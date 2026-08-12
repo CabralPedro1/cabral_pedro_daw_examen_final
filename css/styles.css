@@ -1,0 +1,666 @@
+:root {
+    --negro: #080808;
+    --negro-suave: #101010;
+    --gris-oscuro: #171717;
+    --gris-borde: #333333;
+
+    --rojo-oscuro: #6f0b08;
+    --rojo: #a71914;
+    --rojo-intenso: #c92820;
+
+    --blanco: #f2eee7;
+    --gris-texto: #bdbdbd;
+    --gris-suave: #777777;
+
+    --fuente-titulos: 'Oswald', sans-serif;
+    --fuente-texto: Arial, sans-serif;
+}
+
+
+/* =========================================
+   ESTILOS GENERALES
+   ========================================= */
+
+body {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+    margin: 0;
+
+    background:
+        radial-gradient(
+            circle at 85% 50%,
+            rgba(120, 0, 0, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(120, 0, 0, 0.08),
+            transparent 25%
+        ),
+        var(--negro);
+
+    color: var(--blanco);
+    font-family: var(--fuente-texto);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fuente-titulos);
+}
+
+p {
+    color: var(--gris-texto);
+}
+
+
+/* =========================================
+   PANTALLA INICIAL
+   ========================================= */
+
+.pantalla-inicial {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 85% 50%,
+            rgba(120, 0, 0, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(120, 0, 0, 0.08),
+            transparent 25%
+        );
+}
+
+
+/* =========================================
+   ENCABEZADO
+   ========================================= */
+
+.encabezado {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.5rem;
+
+    min-height: 190px;
+    padding: 2rem 4rem;
+
+    border-bottom: 2px solid var(--rojo-oscuro);
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.85),
+            rgba(20, 0, 0, 0.75)
+        );
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+
+    object-fit: contain;
+}
+
+.titulo-principal {
+    text-align: center;
+}
+
+.titulo-principal h1 {
+    margin: 0;
+
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 4rem;
+    font-weight: 700;
+
+    line-height: 1;
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+}
+
+.titulo-principal p {
+    margin-top: 0.8rem;
+
+    color: var(--rojo-intenso);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.15rem;
+}
+
+
+/* =========================================
+   CONTENIDO INICIAL
+   ========================================= */
+
+.contenido-inicial {
+    display: flex;
+    flex: 1;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2rem;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+
+.bienvenida {
+    width: 100%;
+
+    text-align: center;
+}
+
+.bienvenida h2 {
+    margin-bottom: 1rem;
+
+    color: var(--blanco);
+
+    font-size: 2.7rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06rem;
+}
+
+.bienvenida p {
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    color: var(--gris-texto);
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   CONFIGURACIÓN DEL JUEGO
+   ========================================= */
+
+.configuracion-juego {
+    width: 100%;
+    max-width: 650px;
+
+    padding: 2rem;
+
+    border: 1px solid var(--rojo-oscuro);
+    border-radius: 5px;
+
+    background: rgba(16, 16, 16, 0.9);
+}
+
+#formulario-inicio {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+}
+
+
+/* =========================================
+   CAMPOS DE FORMULARIO
+   ========================================= */
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.campo-formulario label,
+.seleccion-dificultad legend {
+    color: var(--rojo);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.12rem;
+}
+
+.campo-formulario input,
+.campo-formulario textarea,
+.controles-ranking select {
+    width: 100%;
+
+    border: 1px solid var(--rojo-oscuro);
+    border-radius: 5px;
+
+    outline: none;
+
+    background: var(--negro-suave);
+    color: var(--blanco);
+
+    font-family: var(--fuente-texto);
+}
+
+.campo-formulario input {
+    height: 50px;
+
+    padding: 0 1rem;
+}
+
+.campo-formulario textarea {
+    min-height: 130px;
+
+    padding: 0.9rem 1rem;
+
+    resize: vertical;
+}
+
+.campo-formulario input::placeholder,
+.campo-formulario textarea::placeholder {
+    color: var(--gris-suave);
+}
+
+.campo-formulario input:focus,
+.campo-formulario textarea:focus,
+.controles-ranking select:focus {
+    border-color: var(--rojo-intenso);
+
+    box-shadow:
+        0 0 8px rgba(180, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   DIFICULTADES
+   ========================================= */
+
+.seleccion-dificultad {
+    border: 0;
+}
+
+.opciones-dificultad {
+    display: flex;
+
+    gap: 1rem;
+
+    margin-top: 1rem;
+}
+
+.opcion-dificultad {
+    display: flex;
+    flex: 1;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.5rem;
+
+    min-height: 100px;
+
+    padding: 1rem;
+
+    border: 1px solid var(--gris-borde);
+    border-radius: 5px;
+
+    background: var(--negro-suave);
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.opcion-dificultad:hover {
+    border-color: var(--rojo);
+
+    background: #250000;
+
+    transform: translateY(-2px);
+}
+
+.opcion-dificultad.seleccionada {
+    border-color: var(--rojo-intenso);
+
+    background: #400000;
+
+    box-shadow:
+        0 0 10px rgba(180, 0, 0, 0.2);
+}
+
+.nombre-dificultad {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+}
+
+.cantidad-pares {
+    color: var(--gris-suave);
+
+    font-family: var(--fuente-texto);
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   BOTONES
+   ========================================= */
+
+.boton {
+    padding: 0.8rem 1.5rem;
+
+    border: 1px solid var(--rojo);
+    border-radius: 4px;
+
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.boton:hover {
+    transform: translateY(-1px);
+}
+
+.boton-principal {
+    background: var(--rojo-oscuro);
+}
+
+.boton-principal:hover {
+    background: var(--rojo-intenso);
+
+    border-color: var(--rojo-intenso);
+}
+
+.boton-secundario {
+    background: var(--negro-suave);
+}
+
+.boton-secundario:hover {
+    background: #250000;
+
+    border-color: var(--rojo-intenso);
+}
+
+
+/* =========================================
+   MENSAJES DE ERROR
+   ========================================= */
+
+.mensaje-error {
+    min-height: 1.2rem;
+
+    color: #e34b43;
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.pie-pagina {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    margin-top: auto;
+
+    padding: 1.5rem 4rem;
+
+    border-top: 1px solid var(--rojo-oscuro);
+
+    background: var(--negro);
+}
+
+.navegacion-pie {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1.5rem;
+}
+
+.navegacion-pie a {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05rem;
+
+    transition: color 0.2s ease;
+}
+
+.navegacion-pie a:hover {
+    color: var(--rojo-intenso);
+}
+
+.separador-footer {
+    color: var(--rojo);
+}
+
+.pie-pagina p {
+    color: var(--gris-suave);
+
+    font-size: 0.85rem;
+}
+
+
+/* =========================================
+   PÁGINA DE CONTACTO
+   ========================================= */
+
+.pagina-contacto {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 85% 50%,
+            rgba(120, 0, 0, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 80%,
+            rgba(120, 0, 0, 0.08),
+            transparent 25%
+        ),
+        var(--negro);
+}
+
+.contacto-encabezado {
+    min-height: 190px;
+
+    padding: 2rem 4rem;
+}
+
+.contacto-encabezado .titulo-principal h1 {
+    font-size: 4rem;
+}
+
+.contacto-encabezado .titulo-principal p {
+    font-size: 1.4rem;
+}
+
+.contenido-contacto {
+    display: flex;
+    flex: 1;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 100%;
+
+    padding: 3.5rem 2rem 4rem;
+}
+
+.seccion-contacto {
+    width: 100%;
+    max-width: 960px;
+}
+
+.seccion-contacto h2 {
+    margin-bottom: 0.7rem;
+
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 2.7rem;
+    font-weight: 600;
+
+    line-height: 1.1;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06rem;
+}
+
+.texto-contacto {
+    margin-bottom: 2.5rem;
+
+    color: var(--gris-texto);
+
+    line-height: 1.6;
+}
+
+#formulario-contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 1.5rem;
+}
+
+.campo-contacto {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 850px;
+
+    gap: 0.5rem;
+}
+
+.campo-contacto label {
+    color: var(--rojo);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.15rem;
+}
+
+.campo-contacto input,
+.campo-contacto textarea {
+    width: 100%;
+
+    border: 1px solid var(--rojo-oscuro);
+    border-radius: 5px;
+
+    outline: none;
+
+    background: var(--negro-suave);
+    color: var(--blanco);
+
+    font-family: var(--fuente-texto);
+    font-size: 1rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.campo-contacto input {
+    height: 50px;
+
+    padding: 0 1rem;
+}
+
+.campo-contacto textarea {
+    min-height: 140px;
+
+    padding: 0.9rem 1rem;
+
+    resize: vertical;
+}
+
+.campo-contacto input::placeholder,
+.campo-contacto textarea::placeholder {
+    color: var(--gris-suave);
+}
+
+.campo-contacto input:focus,
+.campo-contacto textarea:focus {
+    border-color: var(--rojo-intenso);
+
+    box-shadow:
+        0 0 8px rgba(180, 0, 0, 0.2);
+}
+
+.boton-contacto {
+    min-width: 235px;
+
+    min-height: 55px;
+
+    margin-top: 0.5rem;
+
+    font-size: 1.1rem;
+}
+
+.pagina-contacto .pie-pagina {
+    padding: 1.5rem 4rem;
+}

@@ -1,0 +1,202 @@
+/* =========================================
+   MODALES
+   ========================================= */
+
+.modal {
+    position: fixed;
+
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 1.5rem;
+
+    background: rgba(0, 0, 0, 0.82);
+}
+
+
+/* =========================================
+   CONTENIDO
+   ========================================= */
+
+.contenido-modal {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 1.5rem;
+
+    width: 100%;
+    max-width: 550px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 2rem;
+
+    border: 1px solid var(--rojo-intenso);
+    border-radius: 5px;
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(120, 0, 0, 0.15),
+            transparent 35%
+        ),
+        var(--negro-suave);
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.contenido-modal h2 {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 2.2rem;
+    font-weight: 600;
+
+    text-align: center;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.06rem;
+}
+
+.contenido-modal > p {
+    color: var(--gris-texto);
+
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   RESULTADO FINAL
+   ========================================= */
+
+.resultado-final {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.7rem;
+}
+
+.resultado-final p {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding-bottom: 0.5rem;
+
+    border-bottom: 1px solid var(--gris-borde);
+
+    color: var(--gris-texto);
+}
+
+.resultado-final span {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+}
+
+
+/* =========================================
+   ACCIONES DEL MODAL
+   ========================================= */
+
+.acciones-modal {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 1rem;
+}
+
+
+/* =========================================
+   RANKING
+   ========================================= */
+
+.controles-ranking {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+.controles-ranking label {
+    color: var(--rojo);
+
+    font-family: var(--fuente-titulos);
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+}
+
+.controles-ranking select {
+    width: auto;
+
+    min-width: 150px;
+
+    padding: 0.6rem;
+}
+
+.lista-ranking {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+.item-ranking {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding: 0.8rem;
+
+    border-bottom: 1px solid var(--gris-borde);
+}
+
+.item-ranking span {
+    color: var(--gris-texto);
+}
+
+.item-ranking strong {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+}
+
+
+/* =========================================
+   OCULTAR ELEMENTOS
+   ========================================= */
+
+.oculto {
+    display: none;
+}

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Memotest Discografía Redonda">
+    <title>Memotest Discografía Redonda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <div id="pantalla-inicial" class="pantalla-inicial">
+
+        <header class="encabezado">
+            <div class="logo">
+                <img
+                    src="assets/images/logo/logo-redondos.png"
+                    alt="Logo de Los Redondos"
+                >
+            </div>
+
+            <div class="titulo-principal">
+                <h1>Memotest</h1>
+                <p>Discografía Redonda</p>
+            </div>
+        </header>
+
+        <main class="contenido-inicial">
+
+            <section class="bienvenida">
+                <h2>Completá la colección</h2>
+
+                <p>
+                    Encontrá todas las tapas y completá
+                    la discografía.
+                </p>
+            </section>
+
+            <section class="configuracion-juego">
+
+                <form id="formulario-inicio">
+
+                    <div class="campo-formulario">
+                        <label for="nombre-jugador">
+                            Nombre del jugador
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre-jugador"
+                            name="nombre-jugador"
+                            autocomplete="off"
+                        >
+
+                        <p id="error-nombre" class="mensaje-error"></p>
+                    </div>
+
+                    <fieldset class="seleccion-dificultad">
+
+                        <legend>Seleccioná la dificultad</legend>
+
+                        <div class="opciones-dificultad">
+
+                            <button
+                                type="button"
+                                class="opcion-dificultad"
+                                data-dificultad="facil"
+                            >
+                                <span class="nombre-dificultad">
+                                    Fácil
+                                </span>
+
+                                <span class="cantidad-pares">
+                                    8 pares
+                                </span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="opcion-dificultad"
+                                data-dificultad="medio"
+                            >
+                                <span class="nombre-dificultad">
+                                    Medio
+                                </span>
+
+                                <span class="cantidad-pares">
+                                    10 pares
+                                </span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="opcion-dificultad"
+                                data-dificultad="dificil"
+                            >
+                                <span class="nombre-dificultad">
+                                    Difícil
+                                </span>
+
+                                <span class="cantidad-pares">
+                                    18 pares
+                                </span>
+                            </button>
+
+                        </div>
+
+                        <p
+                            id="error-dificultad"
+                            class="mensaje-error"
+                        ></p>
+
+                    </fieldset>
+
+                    <button
+                        type="submit"
+                        id="boton-comenzar"
+                        class="boton boton-principal"
+                    >
+                        Comenzar
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- PANTALLA DEL JUEGO -->
+
+    <div id="pantalla-juego" class="pantalla-juego oculto">
+
+        <header class="encabezado-juego">
+
+            <div class="identidad-juego">
+                <h1>Memotest Discografía Redonda</h1>
+            </div>
+
+            <div class="informacion-jugador">
+
+                <p>
+                    Jugador:
+                    <span id="jugador-actual"></span>
+                </p>
+
+                <p>
+                    Nivel:
+                    <span id="nivel-actual"></span>
+                </p>
+
+            </div>
+
+        </header>
+
+        <main class="contenido-juego">
+
+            <section class="estadisticas">
+
+                <div class="estadistica">
+                    <span class="etiqueta-estadistica">
+                        Tiempo
+                    </span>
+
+                    <span
+                        id="tiempo"
+                        class="valor-estadistica"
+                    >
+                        00:00
+                    </span>
+                </div>
+
+                <div class="estadistica">
+                    <span class="etiqueta-estadistica">
+                        Puntaje
+                    </span>
+
+                    <span
+                        id="puntaje"
+                        class="valor-estadistica"
+                    >
+                        0
+                    </span>
+                </div>
+
+                <div class="estadistica">
+                    <span class="etiqueta-estadistica">
+                        Intentos
+                    </span>
+
+                    <span
+                        id="intentos"
+                        class="valor-estadistica"
+                    >
+                        0
+                    </span>
+                </div>
+
+                <div class="estadistica">
+                    <span class="etiqueta-estadistica">
+                        Errores
+                    </span>
+
+                    <span
+                        id="errores"
+                        class="valor-estadistica"
+                    >
+                        0
+                    </span>
+                </div>
+
+                <div class="estadistica">
+                    <span class="etiqueta-estadistica">
+                        Pares
+                    </span>
+
+                    <span
+                        id="pares-encontrados"
+                        class="valor-estadistica"
+                    >
+                        0 / 0
+                    </span>
+                </div>
+
+            </section>
+
+            <section class="acciones-juego">
+
+                <button
+                    type="button"
+                    id="boton-ranking"
+                    class="boton boton-secundario"
+                >
+                    Ranking
+                </button>
+
+                <button
+                    type="button"
+                    id="boton-reiniciar"
+                    class="boton boton-secundario"
+                >
+                    Reiniciar
+                </button>
+
+            </section>
+
+            <section class="tablero-contenedor">
+
+                <h2>Encontrá los pares</h2>
+
+                <div
+                    id="tablero"
+                    class="tablero"
+                ></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- MODAL DE VICTORIA -->
+
+    <div
+    id="modal-victoria"
+    class="modal oculto"
+>
+
+    <div class="contenido-modal">
+
+        <h2>¡Partida completada!</h2>
+
+        <p>
+            Encontraste todos los pares.
+        </p>
+
+        <div class="resultado-final">
+
+            <p>
+                Nombre:
+                <span id="resultado-nombre"></span>
+            </p>
+
+            <p>
+                Nivel:
+                <span id="resultado-nivel"></span>
+            </p>
+
+            <p>
+                Tiempo:
+                <span id="resultado-tiempo"></span>
+            </p>
+
+            <p>
+                Intentos:
+                <span id="resultado-intentos"></span>
+            </p>
+
+            <p>
+                Errores:
+                <span id="resultado-errores"></span>
+            </p>
+
+            <p>
+                Puntaje:
+                <span id="resultado-puntaje"></span>
+            </p>
+
+        </div>
+
+        <div class="acciones-modal">
+
+            <button
+                type="button"
+                id="boton-nueva-partida"
+                class="boton boton-principal"
+            >
+                Nueva partida
+            </button>
+
+            <button
+                type="button"
+                id="boton-volver-inicio"
+                class="boton boton-secundario"
+            >
+                Volver al inicio
+            </button>
+
+            <button
+                type="button"
+                id="boton-ranking"
+                class="boton boton-secundario"
+            >
+                Ranking
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- MODAL DE RANKING -->
+
+    <div
+        id="modal-ranking"
+        class="modal oculto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-ranking"
+    >
+
+        <div class="contenido-modal">
+
+            <h2 id="titulo-ranking">
+                Ranking
+            </h2>
+
+            <div class="controles-ranking">
+
+                <label for="orden-ranking">
+                    Ordenar por
+                </label>
+
+                <select id="orden-ranking">
+
+                    <option value="puntaje">
+                        Puntaje
+                    </option>
+
+                    <option value="fecha">
+                        Fecha
+                    </option>
+
+                    <option value="tiempo">
+                        Duración
+                    </option>
+
+                    <option value="nivel">
+                        Nivel
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div
+                id="lista-ranking"
+                class="lista-ranking"
+            ></div>
+
+            <div class="acciones-modal">
+
+                <button
+                    type="button"
+                    id="boton-borrar-ranking"
+                    class="boton boton-secundario"
+                >
+                    Borrar historial
+                </button>
+
+                <button
+                    type="button"
+                    id="boton-cerrar-ranking"
+                    class="boton boton-secundario"
+                >
+                    Cerrar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MODAL DE REINICIO -->
+
+    <div
+        id="modal-reinicio"
+        class="modal oculto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-reinicio"
+    >
+
+        <div class="contenido-modal">
+
+            <h2 id="titulo-reinicio">
+                ¿Querés abandonar la partida?
+            </h2>
+
+            <p>
+                La partida actual no será guardada.
+            </p>
+
+            <div class="acciones-modal">
+
+                <button
+                    type="button"
+                    id="boton-continuar"
+                    class="boton boton-secundario"
+                >
+                    Continuar jugando
+                </button>
+
+                <button
+                    type="button"
+                    id="boton-abandonar"
+                    class="boton boton-principal"
+                >
+                    Abandonar y comenzar una nueva
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer class="pie-pagina">
+
+        <nav
+            class="navegacion-pie"
+            aria-label="Navegación del sitio"
+        >
+
+            <a href="pages/contact.html">
+                Contacto
+            </a>
+
+            <a
+                href="https://github.com/CabralPedro1/cabral_pedro_daw_examen_final"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub
+            </a>
+
+        </nav>
+
+        <p>
+            Memotest Discografía Redonda - 2026
+        </p>
+
+    </footer>
+
+    <script src="js/validation.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/ranking.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

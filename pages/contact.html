@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacto de Memotest Discografía Redonda">
+    <title>Contacto - Memotest Discografía Redonda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body>
+
+    <div class="pagina-contacto">
+
+        <header class="encabezado">
+
+            <div class="logo">
+                <img
+                    src="../assets/images/logo/logo-redondos.png"
+                    alt="Logo de Los Redondos"
+                >
+            </div>
+
+            <div class="titulo-principal">
+                <h1>Contacto</h1>
+                <p>Memotest Discografía Redonda</p>
+            </div>
+
+        </header>
+
+        <main class="contenido-contacto">
+
+            <section class="seccion-contacto">
+
+                <h2>Contactate con nosotros</h2>
+
+                <p>
+                    Si tenés alguna consulta, sugerencia o comentario
+                    sobre el proyecto, podés escribirnos.
+                </p>
+
+                <form id="formulario-contacto">
+
+                    <div class="campo-formulario">
+
+                        <label for="nombre-contacto">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombre-contacto"
+                            name="nombre-contacto"
+                            autocomplete="name"
+                        >
+
+                        <p
+                            id="error-nombre-contacto"
+                            class="mensaje-error"
+                        ></p>
+
+                    </div>
+
+                    <div class="campo-formulario">
+
+                        <label for="email-contacto">
+                            Mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email-contacto"
+                            name="email-contacto"
+                            autocomplete="email"
+                        >
+
+                        <p
+                            id="error-email-contacto"
+                            class="mensaje-error"
+                        ></p>
+
+                    </div>
+
+                    <div class="campo-formulario">
+
+                        <label for="mensaje-contacto">
+                            Mensaje
+                        </label>
+
+                        <textarea
+                            id="mensaje-contacto"
+                            name="mensaje-contacto"
+                            rows="6"
+                        ></textarea>
+
+                        <p
+                            id="error-mensaje-contacto"
+                            class="mensaje-error"
+                        ></p>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="boton-enviar-contacto"
+                        class="boton boton-principal"
+                    >
+                        Enviar mensaje
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+        <footer class="pie-pagina">
+
+            <nav
+                class="navegacion-pie"
+                aria-label="Navegación del sitio"
+            >
+
+                <a href="../index.html">
+                    Volver al juego
+                </a>
+
+                <a
+                    href="https://github.com/CabralPedro1/cabral_pedro_daw_examen_final"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    GitHub
+                </a>
+
+            </nav>
+
+            <p>
+                Memotest Discografía Redonda - 2026
+            </p>
+
+        </footer>
+
+    </div>
+
+    <script src="../js/validation.js"></script>
+    <script src="../js/contact.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,323 @@
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    /* -------------------------------------
+       ENCABEZADO GENERAL
+       ------------------------------------- */
+
+    .encabezado {
+        flex-direction: column;
+
+        min-height: auto;
+
+        padding: 2rem 1.5rem;
+    }
+
+    .titulo-principal h1 {
+        font-size: 3rem;
+    }
+
+    .titulo-principal p {
+        font-size: 1.1rem;
+    }
+
+
+    /* -------------------------------------
+       PANTALLA INICIAL
+       ------------------------------------- */
+
+    .contenido-inicial {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .opciones-dificultad {
+        flex-direction: column;
+    }
+
+    .opcion-dificultad {
+        width: 100%;
+    }
+
+
+    /* -------------------------------------
+       FOOTER
+       ------------------------------------- */
+
+    .pie-pagina {
+        flex-direction: column;
+
+        justify-content: center;
+
+        padding: 1.5rem;
+
+        text-align: center;
+    }
+
+
+    /* -------------------------------------
+       ENCABEZADO DEL JUEGO
+       ------------------------------------- */
+
+    .encabezado-juego {
+        flex-direction: column;
+
+        padding: 1.5rem;
+
+        text-align: center;
+    }
+
+    .informacion-jugador {
+        flex-direction: column;
+
+        gap: 0.5rem;
+    }
+
+
+    /* -------------------------------------
+       ESTADÍSTICAS
+       ------------------------------------- */
+
+    .estadistica {
+        min-width: 100px;
+    }
+
+
+    /* -------------------------------------
+       TABLERO
+       ------------------------------------- */
+
+    .tablero {
+        width: 95vw;
+
+        gap: 7px;
+
+        padding: 8px;
+    }
+
+    .carta {
+        width: 100%;
+    }
+
+
+    /* -------------------------------------
+       CONTACTO
+       ------------------------------------- */
+
+    .contacto-encabezado {
+        min-height: auto;
+
+        padding: 2rem 1.5rem;
+    }
+
+    .contacto-encabezado .titulo-principal h1 {
+        font-size: 3rem;
+    }
+
+    .contenido-contacto {
+        padding: 2.5rem 1.5rem 3rem;
+    }
+
+    .seccion-contacto h2 {
+        font-size: 2.2rem;
+    }
+
+    .campo-contacto {
+        max-width: 100%;
+    }
+
+    .pagina-contacto .pie-pagina {
+        padding: 1.5rem;
+    }
+
+}
+
+
+/* =========================================
+   CELULAR
+   ========================================= */
+
+@media (max-width: 480px) {
+
+    /* -------------------------------------
+       GENERAL
+       ------------------------------------- */
+
+    .logo img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .titulo-principal h1 {
+        font-size: 2.5rem;
+    }
+
+    .titulo-principal p {
+        font-size: 0.95rem;
+    }
+
+
+    /* -------------------------------------
+       PANTALLA INICIAL
+       ------------------------------------- */
+
+    .contenido-inicial {
+        padding: 2rem 1rem;
+    }
+
+    .configuracion-juego {
+        padding: 1.5rem;
+    }
+
+    .bienvenida h2 {
+        font-size: 2rem;
+    }
+
+
+    /* -------------------------------------
+       JUEGO
+       ------------------------------------- */
+
+    .contenido-juego {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .identidad-juego h1 {
+        font-size: 1.6rem;
+    }
+
+
+    /* -------------------------------------
+       ESTADÍSTICAS
+       ------------------------------------- */
+
+    .estadisticas {
+        gap: 0.4rem;
+    }
+
+    .estadistica {
+        min-width: 70px;
+
+        padding: 0.5rem;
+    }
+
+    .etiqueta-estadistica {
+        font-size: 0.65rem;
+
+        letter-spacing: 0.03rem;
+    }
+
+    .valor-estadistica {
+        font-size: 1rem;
+    }
+
+
+    /* -------------------------------------
+       ACCIONES
+       ------------------------------------- */
+
+    .acciones-juego {
+        flex-direction: column;
+    }
+
+    .acciones-juego .boton {
+        width: 100%;
+    }
+
+
+    /* -------------------------------------
+       TABLERO
+       ------------------------------------- */
+
+    .tablero {
+        width: 96vw;
+
+        gap: 4px;
+
+        padding: 5px;
+    }
+
+    .carta-frente,
+    .carta-dorso {
+        border-width: 1px;
+    }
+
+
+    /* -------------------------------------
+       MODALES
+       ------------------------------------- */
+
+    .contenido-modal {
+        padding: 1.5rem;
+    }
+
+    .contenido-modal h2 {
+        font-size: 1.8rem;
+    }
+
+    .acciones-modal {
+        flex-direction: column;
+    }
+
+    .acciones-modal .boton {
+        width: 100%;
+    }
+
+
+    /* -------------------------------------
+       RANKING
+       ------------------------------------- */
+
+    .controles-ranking {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .controles-ranking select {
+        width: 100%;
+    }
+
+
+    /* -------------------------------------
+       CONTACTO
+       ------------------------------------- */
+
+    .contacto-encabezado .logo img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .contacto-encabezado .titulo-principal h1 {
+        font-size: 2.5rem;
+    }
+
+    .contacto-encabezado .titulo-principal p {
+        font-size: 0.95rem;
+    }
+
+    .seccion-contacto h2 {
+        font-size: 1.9rem;
+    }
+
+    .campo-contacto input {
+        height: 46px;
+    }
+
+    .campo-contacto textarea {
+        min-height: 120px;
+    }
+
+    .boton-contacto {
+        width: 100%;
+    }
+
+    .pagina-contacto .navegacion-pie {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+}

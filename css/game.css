@@ -1,0 +1,327 @@
+/* =========================================
+   PANTALLA DEL JUEGO
+   ========================================= */
+
+.pantalla-juego {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 85% 50%,
+            rgba(120, 0, 0, 0.10),
+            transparent 30%
+        ),
+        var(--negro);
+}
+
+
+/* =========================================
+   ENCABEZADO DEL JUEGO
+   ========================================= */
+
+.encabezado-juego {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 2rem;
+
+    padding: 1.5rem 4rem;
+
+    border-bottom: 2px solid var(--rojo-oscuro);
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.9),
+            rgba(20, 0, 0, 0.75)
+        );
+}
+
+.identidad-juego h1 {
+    margin: 0;
+
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+}
+
+.informacion-jugador {
+    display: flex;
+    gap: 2rem;
+}
+
+.informacion-jugador p {
+    color: var(--gris-texto);
+}
+
+.informacion-jugador span {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+}
+
+
+/* =========================================
+   CONTENIDO DEL JUEGO
+   ========================================= */
+
+.contenido-juego {
+    display: flex;
+    flex: 1;
+
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1.5rem;
+
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 2rem 1.5rem;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   ESTADÍSTICAS
+   ========================================= */
+
+.estadisticas {
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 0.8rem;
+
+    width: 100%;
+}
+
+.estadistica {
+    display: flex;
+    flex: 1;
+
+    min-width: 130px;
+
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.3rem;
+
+    padding: 0.8rem;
+
+    border: 1px solid var(--rojo-oscuro);
+    border-radius: 4px;
+
+    background: rgba(16, 16, 16, 0.9);
+}
+
+.etiqueta-estadistica {
+    color: var(--rojo);
+
+    font-family: var(--fuente-titulos);
+    font-size: 0.85rem;
+    font-weight: 500;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+}
+
+.valor-estadistica {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   ACCIONES DEL JUEGO
+   ========================================= */
+
+.acciones-juego {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 1rem;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   TABLERO
+   ========================================= */
+
+.tablero-contenedor {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+
+.tablero-contenedor h2 {
+    margin-bottom: 1rem;
+
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 2rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08rem;
+}
+
+.tablero {
+    display: grid;
+
+    /*
+     * El ancho máximo permite que el tablero
+     * completo entre en pantalla en desktop.
+     */
+    width: min(90vw, 820px);
+
+    gap: 10px;
+
+    padding: 12px;
+
+    border: 1px solid var(--rojo-oscuro);
+    border-radius: 5px;
+
+    background: rgba(8, 8, 8, 0.7);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   CARTAS
+   ========================================= */
+
+.carta {
+    position: relative;
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    min-width: 0;
+
+    cursor: pointer;
+
+    perspective: 1000px;
+}
+
+.carta-contenido {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    transition: transform 0.5s ease;
+
+    transform-style: preserve-3d;
+}
+
+.carta.girada .carta-contenido {
+    transform: rotateY(180deg);
+}
+
+.carta-frente,
+.carta-dorso {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border: 2px solid var(--rojo-oscuro);
+    border-radius: 4px;
+
+    box-sizing: border-box;
+
+    backface-visibility: hidden;
+}
+
+.carta-dorso {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            rgba(70, 0, 0, 0.3),
+            rgba(8, 8, 8, 0.9)
+        ),
+        var(--negro);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.carta-dorso img {
+    width: 65%;
+    height: 65%;
+
+    object-fit: contain;
+}
+
+.carta-frente {
+    transform: rotateY(180deg);
+
+    background: var(--negro);
+}
+
+.carta-frente img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   CARTAS ENCONTRADAS
+   ========================================= */
+
+.carta.encontrada {
+    cursor: default;
+}
+
+.carta.encontrada .carta-frente {
+    border-color: var(--rojo-intenso);
+
+    box-shadow:
+        0 0 12px rgba(201, 40, 32, 0.4);
+}
+
+
+/* =========================================
+   TABLERO BLOQUEADO
+   ========================================= */
+
+.tablero.bloqueado .carta {
+    pointer-events: none;
+}
