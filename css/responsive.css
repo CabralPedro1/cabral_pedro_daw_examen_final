@@ -1,3 +1,32 @@
+/* Ajustes del alto disponible en desktop. */
+@media (min-width: 769px) {
+    .pantalla-juego { min-height: 0; flex: 1; }
+    .encabezado-juego { padding: 0.65rem 2rem; gap: 1rem; }
+    .identidad-juego h1 { font-size: 1.5rem; }
+    .contenido-juego { padding: 0.6rem 1rem; gap: 0.5rem; }
+    .estadistica { padding: 0.35rem; min-width: 0; }
+    .acciones-juego .boton { padding: 0.45rem 1rem; }
+    .tablero-contenedor h2 { font-size: 1.3rem; margin-bottom: 0.4rem; }
+    body > .pie-pagina { padding: 0.65rem 2rem; }
+}
+
+.informacion-jugador { min-width: 0; }
+.informacion-jugador p { overflow-wrap: anywhere; }
+#jugador-actual { display: inline-block; max-width: 14rem; vertical-align: bottom; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.resultado-final span, .informacion-ranking { min-width: 0; overflow-wrap: anywhere; }
+.carta { animation: entrada-carta 0.3s ease both; }
+.contenido-modal { animation: entrada-carta 0.2s ease both; }
+.pantalla-inicial { animation: entrada-carta 0.3s ease both; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outline-offset: 3px; }
+@keyframes entrada-carta {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .carta, .contenido-modal, .pantalla-inicial { animation: none; }
+    .carta-contenido { transition: none; }
+}
+
 /* =========================================
    TABLET
    ========================================= */

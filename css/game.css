@@ -193,7 +193,8 @@
 }
 
 .tablero {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
 
     /*
      * El ancho máximo permite que el tablero
@@ -223,7 +224,10 @@
 
     width: 100%;
 
-    aspect-ratio: 1 / 1;
+    flex: 0 0 auto;
+    padding: 0;
+    background: transparent;
+    color: var(--blanco);
 
     min-width: 0;
 
@@ -233,6 +237,7 @@
 }
 
 .carta-contenido {
+    display: block;
     position: relative;
 
     width: 100%;

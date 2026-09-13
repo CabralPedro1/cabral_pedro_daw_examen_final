@@ -1,60 +1,137 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Memotest Discografía Redonda">
-    <title>Memotest Discografía Redonda</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Memotest Discografía Redonda"
+    >
+
+    <title>
+        Memotest Discografía Redonda
+    </title>
+
+
+    <!-- GOOGLE FONT -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
 
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/game.css">
-    <link rel="stylesheet" href="css/modal.css">
-    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/reset.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/styles.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/game.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/modal.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
 </head>
+
 
 <body>
 
-    <div id="pantalla-inicial" class="pantalla-inicial">
+
+    <!-- =========================================
+         PANTALLA INICIAL
+         ========================================= -->
+
+    <div
+        id="pantalla-inicial"
+        class="pantalla-inicial"
+    >
 
         <header class="encabezado">
+
             <div class="logo">
+
                 <img
                     src="assets/images/logo/logo-redondos.png"
                     alt="Logo de Los Redondos"
                 >
+
             </div>
 
+
             <div class="titulo-principal">
-                <h1>Memotest</h1>
-                <p>Discografía Redonda</p>
+
+                <h1>
+                    Memotest
+                </h1>
+
+                <p>
+                    Discografía Redonda
+                </p>
+
             </div>
+
         </header>
+
 
         <main class="contenido-inicial">
 
             <section class="bienvenida">
-                <h2>Completá la colección</h2>
+
+                <h2>
+                    Completá la colección
+                </h2>
 
                 <p>
                     Encontrá todas las tapas y completá
                     la discografía.
                 </p>
+
             </section>
+
 
             <section class="configuracion-juego">
 
                 <form id="formulario-inicio">
 
+
+                    <!-- NOMBRE -->
+
                     <div class="campo-formulario">
+
                         <label for="nombre-jugador">
                             Nombre del jugador
                         </label>
@@ -66,20 +143,32 @@
                             autocomplete="off"
                         >
 
-                        <p id="error-nombre" class="mensaje-error"></p>
+                        <p
+                            id="error-nombre"
+                            class="mensaje-error"
+                        ></p>
+
                     </div>
+
+
+                    <!-- DIFICULTAD -->
 
                     <fieldset class="seleccion-dificultad">
 
-                        <legend>Seleccioná la dificultad</legend>
+                        <legend>
+                            Seleccioná la dificultad
+                        </legend>
+
 
                         <div class="opciones-dificultad">
+
 
                             <button
                                 type="button"
                                 class="opcion-dificultad"
                                 data-dificultad="facil"
                             >
+
                                 <span class="nombre-dificultad">
                                     Fácil
                                 </span>
@@ -87,13 +176,16 @@
                                 <span class="cantidad-pares">
                                     8 pares
                                 </span>
+
                             </button>
+
 
                             <button
                                 type="button"
                                 class="opcion-dificultad"
                                 data-dificultad="medio"
                             >
+
                                 <span class="nombre-dificultad">
                                     Medio
                                 </span>
@@ -101,13 +193,16 @@
                                 <span class="cantidad-pares">
                                     10 pares
                                 </span>
+
                             </button>
+
 
                             <button
                                 type="button"
                                 class="opcion-dificultad"
                                 data-dificultad="dificil"
                             >
+
                                 <span class="nombre-dificultad">
                                     Difícil
                                 </span>
@@ -115,9 +210,12 @@
                                 <span class="cantidad-pares">
                                     18 pares
                                 </span>
+
                             </button>
 
+
                         </div>
+
 
                         <p
                             id="error-dificultad"
@@ -125,6 +223,9 @@
                         ></p>
 
                     </fieldset>
+
+
+                    <!-- COMENZAR -->
 
                     <button
                         type="submit"
@@ -134,6 +235,7 @@
                         Comenzar
                     </button>
 
+
                 </form>
 
             </section>
@@ -142,15 +244,28 @@
 
     </div>
 
-    <!-- PANTALLA DEL JUEGO -->
 
-    <div id="pantalla-juego" class="pantalla-juego oculto">
+
+    <!-- =========================================
+         PANTALLA DEL JUEGO
+         ========================================= -->
+
+    <div
+        id="pantalla-juego"
+        class="pantalla-juego oculto"
+    >
+
 
         <header class="encabezado-juego">
 
             <div class="identidad-juego">
-                <h1>Memotest Discografía Redonda</h1>
+
+                <h1>
+                    Memotest Discografía Redonda
+                </h1>
+
             </div>
+
 
             <div class="informacion-jugador">
 
@@ -168,11 +283,18 @@
 
         </header>
 
+
+
         <main class="contenido-juego">
+
+
+            <!-- ESTADÍSTICAS -->
 
             <section class="estadisticas">
 
+
                 <div class="estadistica">
+
                     <span class="etiqueta-estadistica">
                         Tiempo
                     </span>
@@ -183,9 +305,12 @@
                     >
                         00:00
                     </span>
+
                 </div>
 
+
                 <div class="estadistica">
+
                     <span class="etiqueta-estadistica">
                         Puntaje
                     </span>
@@ -196,9 +321,12 @@
                     >
                         0
                     </span>
+
                 </div>
 
+
                 <div class="estadistica">
+
                     <span class="etiqueta-estadistica">
                         Intentos
                     </span>
@@ -209,9 +337,12 @@
                     >
                         0
                     </span>
+
                 </div>
 
+
                 <div class="estadistica">
+
                     <span class="etiqueta-estadistica">
                         Errores
                     </span>
@@ -222,9 +353,12 @@
                     >
                         0
                     </span>
+
                 </div>
 
+
                 <div class="estadistica">
+
                     <span class="etiqueta-estadistica">
                         Pares
                     </span>
@@ -235,19 +369,31 @@
                     >
                         0 / 0
                     </span>
+
                 </div>
+
 
             </section>
 
+
+
+            <!-- ACCIONES -->
+
             <section class="acciones-juego">
+
+
+                <!-- IMPORTANTE:
+                     Este ID es distinto al Ranking
+                     del modal de victoria. -->
 
                 <button
                     type="button"
-                    id="boton-ranking"
+                    id="boton-ranking-juego"
                     class="boton boton-secundario"
                 >
                     Ranking
                 </button>
+
 
                 <button
                     type="button"
@@ -257,11 +403,18 @@
                     Reiniciar
                 </button>
 
+
             </section>
+
+
+
+            <!-- TABLERO -->
 
             <section class="tablero-contenedor">
 
-                <h2>Encontrá los pares</h2>
+                <h2>
+                    Encontrá los pares
+                </h2>
 
                 <div
                     id="tablero"
@@ -270,92 +423,131 @@
 
             </section>
 
+
         </main>
 
+
+
+
+
     </div>
 
-    <!-- MODAL DE VICTORIA -->
+
+
+    <!-- =========================================
+         MODAL DE VICTORIA
+         ========================================= -->
 
     <div
-    id="modal-victoria"
-    class="modal oculto"
->
+        id="modal-victoria"
+        class="modal oculto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-victoria"
+    >
 
-    <div class="contenido-modal">
+        <div class="contenido-modal">
 
-        <h2>¡Partida completada!</h2>
 
-        <p>
-            Encontraste todos los pares.
-        </p>
+            <h2 id="titulo-victoria">
+                ¡Partida completada!
+            </h2>
 
-        <div class="resultado-final">
-
-            <p>
-                Nombre:
-                <span id="resultado-nombre"></span>
-            </p>
 
             <p>
-                Nivel:
-                <span id="resultado-nivel"></span>
+                Encontraste todos los pares.
             </p>
 
-            <p>
-                Tiempo:
-                <span id="resultado-tiempo"></span>
-            </p>
 
-            <p>
-                Intentos:
-                <span id="resultado-intentos"></span>
-            </p>
+            <p id="aviso-almacenamiento" role="status"></p>
 
-            <p>
-                Errores:
-                <span id="resultado-errores"></span>
-            </p>
+            <div class="resultado-final">
 
-            <p>
-                Puntaje:
-                <span id="resultado-puntaje"></span>
-            </p>
 
-        </div>
+                <p>
+                    Nombre:
+                    <span id="resultado-nombre"></span>
+                </p>
 
-        <div class="acciones-modal">
 
-            <button
-                type="button"
-                id="boton-nueva-partida"
-                class="boton boton-principal"
-            >
-                Nueva partida
-            </button>
+                <p>
+                    Nivel:
+                    <span id="resultado-nivel"></span>
+                </p>
 
-            <button
-                type="button"
-                id="boton-volver-inicio"
-                class="boton boton-secundario"
-            >
-                Volver al inicio
-            </button>
 
-            <button
-                type="button"
-                id="boton-ranking"
-                class="boton boton-secundario"
-            >
-                Ranking
-            </button>
+                <p>
+                    Tiempo:
+                    <span id="resultado-tiempo"></span>
+                </p>
+
+
+                <p>
+                    Intentos:
+                    <span id="resultado-intentos"></span>
+                </p>
+
+
+                <p>
+                    Errores:
+                    <span id="resultado-errores"></span>
+                </p>
+
+
+                <p>
+                    Puntaje:
+                    <span id="resultado-puntaje"></span>
+                </p>
+
+
+            </div>
+
+
+            <div class="acciones-modal">
+
+
+                <button
+                    type="button"
+                    id="boton-nueva-partida"
+                    class="boton boton-principal"
+                >
+                    Nueva partida
+                </button>
+
+
+                <button
+                    type="button"
+                    id="boton-volver-inicio"
+                    class="boton boton-secundario"
+                >
+                    Volver al inicio
+                </button>
+
+
+                <!-- Este es el Ranking del
+                     resultado final -->
+
+                <button
+                    type="button"
+                    id="boton-ranking"
+                    class="boton boton-secundario"
+                >
+                    Ranking
+                </button>
+
+
+            </div>
+
 
         </div>
 
     </div>
 
-</div>
 
-    <!-- MODAL DE RANKING -->
+
+    <!-- =========================================
+         MODAL DE RANKING
+         ========================================= -->
 
     <div
         id="modal-ranking"
@@ -367,15 +559,18 @@
 
         <div class="contenido-modal">
 
+
             <h2 id="titulo-ranking">
                 Ranking
             </h2>
+
 
             <div class="controles-ranking">
 
                 <label for="orden-ranking">
                     Ordenar por
                 </label>
+
 
                 <select id="orden-ranking">
 
@@ -387,7 +582,7 @@
                         Fecha
                     </option>
 
-                    <option value="tiempo">
+                    <option value="duracion">
                         Duración
                     </option>
 
@@ -399,12 +594,17 @@
 
             </div>
 
+
+            <p id="aviso-ranking" role="status"></p>
+
             <div
                 id="lista-ranking"
                 class="lista-ranking"
             ></div>
 
+
             <div class="acciones-modal">
+
 
                 <button
                     type="button"
@@ -414,6 +614,7 @@
                     Borrar historial
                 </button>
 
+
                 <button
                     type="button"
                     id="boton-cerrar-ranking"
@@ -422,13 +623,75 @@
                     Cerrar
                 </button>
 
+
             </div>
+
 
         </div>
 
     </div>
 
-    <!-- MODAL DE REINICIO -->
+
+
+    <!-- =========================================
+         MODAL CONFIRMAR BORRADO
+         ========================================= -->
+
+    <div
+        id="modal-confirmar-borrado"
+        class="modal oculto"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-borrar-ranking"
+    >
+
+        <div class="contenido-modal">
+
+
+            <h2 id="titulo-borrar-ranking">
+                ¿Borrar ranking?
+            </h2>
+
+
+            <p>
+                Se eliminarán todos los resultados
+                guardados. Esta acción no se puede deshacer.
+            </p>
+
+
+            <div class="acciones-modal">
+
+
+                <button
+                    type="button"
+                    id="boton-confirmar-borrado"
+                    class="boton boton-principal"
+                >
+                    Borrar historial
+                </button>
+
+
+                <button
+                    type="button"
+                    id="boton-cancelar-borrado"
+                    class="boton boton-secundario"
+                >
+                    Cancelar
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         MODAL DE REINICIO
+         ========================================= -->
 
     <div
         id="modal-reinicio"
@@ -440,15 +703,19 @@
 
         <div class="contenido-modal">
 
+
             <h2 id="titulo-reinicio">
-                ¿Querés abandonar la partida?
+                ¿Qué querés hacer con la partida?
             </h2>
 
+
             <p>
-                La partida actual no será guardada.
+                Si reiniciás o abandonás, la partida incompleta no se guardará.
             </p>
 
+
             <div class="acciones-modal">
+
 
                 <button
                     type="button"
@@ -456,6 +723,11 @@
                     class="boton boton-secundario"
                 >
                     Continuar jugando
+                </button>
+
+
+                <button type="button" id="boton-confirmar-reinicio" class="boton boton-secundario">
+                    Reiniciar la partida actual
                 </button>
 
                 <button
@@ -466,13 +738,19 @@
                     Abandonar y comenzar una nueva
                 </button>
 
+
             </div>
+
 
         </div>
 
     </div>
 
-    <!-- FOOTER -->
+
+
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
 
     <footer class="pie-pagina">
 
@@ -485,6 +763,7 @@
                 Contacto
             </a>
 
+
             <a
                 href="https://github.com/CabralPedro1/cabral_pedro_daw_examen_final"
                 target="_blank"
@@ -495,19 +774,34 @@
 
         </nav>
 
+
         <p>
             Memotest Discografía Redonda - 2026
         </p>
 
     </footer>
 
+
+
+    <!-- =========================================
+         JAVASCRIPT
+         ========================================= -->
+
     <script src="js/validation.js"></script>
+
     <script src="js/board.js"></script>
+
     <script src="js/game.js"></script>
+
     <script src="js/ui.js"></script>
+
     <script src="js/storage.js"></script>
+
     <script src="js/ranking.js"></script>
+
     <script src="js/main.js"></script>
 
+
 </body>
+
 </html>
