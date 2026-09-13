@@ -15,6 +15,7 @@ var tablero =
 
 function limpiarTablero() {
 
+    cancelarEsperasTablero();
     tablero.innerHTML = '';
 
 }
@@ -27,7 +28,11 @@ function limpiarTablero() {
 function crearCarta(carta) {
 
     var elementoCarta =
-        document.createElement('article');
+        document.createElement('button');
+
+    elementoCarta.type = 'button';
+    elementoCarta.setAttribute('aria-label', 'Carta boca abajo');
+    elementoCarta.setAttribute('data-nombre', carta.nombre);
 
     elementoCarta.classList.add('carta');
 
@@ -40,7 +45,7 @@ function crearCarta(carta) {
        ===================================== */
 
     var contenido =
-        document.createElement('div');
+        document.createElement('span');
 
     contenido.classList.add(
         'carta-contenido'
@@ -52,7 +57,7 @@ function crearCarta(carta) {
        ===================================== */
 
     var dorso =
-        document.createElement('div');
+        document.createElement('span');
 
     dorso.classList.add(
         'carta-dorso'
@@ -74,7 +79,7 @@ function crearCarta(carta) {
        ===================================== */
 
     var frente =
-        document.createElement('div');
+        document.createElement('span');
 
     frente.classList.add(
         'carta-frente'
@@ -159,8 +164,7 @@ function crearTablero(cartas) {
         columnas = 6;
     }
 
-    tablero.style.gridTemplateColumns =
-        'repeat(' + columnas + ', 1fr)';
+    tablero.setAttribute('data-columnas', columnas);
 
 
     cartas.forEach(function (carta) {
@@ -174,6 +178,20 @@ function crearTablero(cartas) {
 
     });
 
+    ajustarTablero();
+    estadoJuego.tableroBloqueado = true;
+    tablero.classList.add('bloqueado');
+    Array.prototype.forEach.call(tablero.children, function (carta) {
+        carta.classList.add('girada');
+    });
+    estadoJuego.esperaInicial = setTimeout(function () {
+        Array.prototype.forEach.call(tablero.children, function (carta) {
+            carta.classList.remove('girada');
+        });
+        estadoJuego.esperaInicial = null;
+        estadoJuego.tableroBloqueado = false;
+        tablero.classList.remove('bloqueado');
+    }, 2500);
 }
 
 
@@ -185,7 +203,8 @@ function seleccionarCarta(elementoCarta) {
 
     if (
         estadoJuego.tableroBloqueado ||
-        estadoJuego.partidaFinalizada
+        estadoJuego.partidaFinalizada ||
+        document.querySelector('.modal:not(.oculto)') !== null
     ) {
 
         return;
@@ -230,6 +249,7 @@ function seleccionarCarta(elementoCarta) {
     elementoCarta.classList.add(
         'girada'
     );
+    elementoCarta.setAttribute('aria-label', elementoCarta.getAttribute('data-nombre'));
 
 
     if (
@@ -347,7 +367,11 @@ function parejaIncorrecta(
      * durante un breve intervalo.
      */
 
-    setTimeout(function () {
+    estadoJuego.esperaPareja = setTimeout(function () {
+
+        estadoJuego.esperaPareja = null;
+        primera.setAttribute('aria-label', 'Carta boca abajo');
+        segunda.setAttribute('aria-label', 'Carta boca abajo');
 
         primera.classList.remove(
             'girada'
@@ -366,7 +390,7 @@ function parejaIncorrecta(
             'bloqueado'
         );
 
-    }, 700);
+    }, 1000);
 
 }
 
@@ -384,3 +408,38 @@ function limpiarSeleccion() {
         null;
 
 }
+
+function cancelarEsperasTablero() {
+    clearTimeout(estadoJuego.esperaInicial);
+    clearTimeout(estadoJuego.esperaPareja);
+    estadoJuego.esperaInicial = null;
+    estadoJuego.esperaPareja = null;
+}
+
+/* Ajustar ambos ejes: el ancho por sí solo no garantiza que entren las filas. */
+function ajustarTablero() {
+    if (!tablero.children.length || pantallaJuego.classList.contains('oculto')) {
+        return;
+    }
+    var columnas = Number(tablero.getAttribute('data-columnas'));
+    var filas = tablero.children.length / columnas;
+    var estilo = window.getComputedStyle(tablero);
+    var espacio = parseFloat(estilo.gap) || 0;
+    var borde = parseFloat(estilo.paddingLeft) * 2 + 2;
+    var anchoDisponible = tablero.parentNode.clientWidth;
+    var lado = (Math.min(anchoDisponible, 820) - borde - espacio * (columnas - 1)) / columnas;
+    if (window.innerWidth > 768) {
+        var footer = document.querySelector('body > .pie-pagina');
+        var altoDisponible = window.innerHeight - tablero.getBoundingClientRect().top - footer.offsetHeight - 24;
+        lado = Math.min(lado, (altoDisponible - borde - espacio * (filas - 1)) / filas);
+    }
+    lado = Math.max(32, Math.floor(lado));
+    tablero.style.width = (lado * columnas + espacio * (columnas - 1) + borde) + 'px';
+    Array.prototype.forEach.call(tablero.children, function (carta) {
+        carta.style.width = lado + 'px';
+        carta.style.height = lado + 'px';
+    });
+}
+
+window.addEventListener('resize', ajustarTablero);
+window.addEventListener('load', ajustarTablero);

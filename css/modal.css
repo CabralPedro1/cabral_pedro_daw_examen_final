@@ -200,3 +200,56 @@
 .oculto {
     display: none;
 }
+
+/* =========================================
+   INFORMACIÓN DEL RANKING
+   ========================================= */
+
+.item-ranking {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 1rem;
+
+    padding: 1rem 0;
+
+    border-bottom: 1px solid var(--gris-borde);
+}
+
+.item-ranking > strong {
+    min-width: 40px;
+
+    color: var(--rojo);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+}
+
+.informacion-ranking {
+    flex: 1;
+}
+
+.informacion-ranking p {
+    margin: 0 0 0.25rem;
+}
+
+.informacion-ranking p:first-child {
+    color: var(--blanco);
+
+    font-family: var(--fuente-titulos);
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    text-transform: uppercase;
+}
+
+.informacion-ranking p:nth-child(2) {
+    color: var(--rojo);
+}
+
+.informacion-ranking small {
+    color: var(--gris-suave);
+
+    font-size: 0.75rem;
+}

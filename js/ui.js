@@ -5,29 +5,29 @@
    ELEMENTOS DE LA INTERFAZ
    ========================================= */
 
-const pantallaInicial = document.getElementById('pantalla-inicial');
-const pantallaJuego = document.getElementById('pantalla-juego');
+var pantallaInicial = document.getElementById('pantalla-inicial');
+var pantallaJuego = document.getElementById('pantalla-juego');
 
-const formularioInicio = document.getElementById('formulario-inicio');
+var formularioInicio = document.getElementById('formulario-inicio');
 
-const nombreJugador = document.getElementById('nombre-jugador');
+var nombreJugador = document.getElementById('nombre-jugador');
 
-const errorNombre = document.getElementById('error-nombre');
-const errorDificultad = document.getElementById('error-dificultad');
+var errorNombre = document.getElementById('error-nombre');
+var errorDificultad = document.getElementById('error-dificultad');
 
-const opcionesDificultad = document.querySelectorAll(
+var opcionesDificultad = document.querySelectorAll(
     '.opcion-dificultad'
 );
 
-const jugadorActual = document.getElementById('jugador-actual');
-const nivelActual = document.getElementById('nivel-actual');
+var jugadorActual = document.getElementById('jugador-actual');
+var nivelActual = document.getElementById('nivel-actual');
 
 
 /* =========================================
    DIFICULTAD SELECCIONADA
    ========================================= */
 
-let dificultadSeleccionada = null;
+var dificultadSeleccionada = null;
 
 
 /* =========================================
@@ -36,7 +36,7 @@ let dificultadSeleccionada = null;
 
 function seleccionarDificultad(opcion) {
 
-    opcionesDificultad.forEach(function (elemento) {
+    Array.prototype.forEach.call(opcionesDificultad,function (elemento) {
         elemento.classList.remove('seleccionada');
     });
 
@@ -62,8 +62,7 @@ function mostrarPantallaJuego(nombre, dificultad) {
     jugadorActual.textContent = nombre;
 
     nivelActual.textContent =
-        dificultad.charAt(0).toUpperCase() +
-        dificultad.slice(1);
+        obtenerNombreNivel(dificultad);
 }
 
 

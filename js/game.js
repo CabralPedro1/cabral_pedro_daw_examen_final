@@ -190,7 +190,15 @@ var estadoJuego = {
 
     segundos: 0,
 
-    intervaloTiempo: null
+    intervaloTiempo: null,
+
+    inicioTiempo: null,
+
+    esperaInicial: null,
+
+    esperaPareja: null,
+
+    resultadoGuardado: false
 
 };
 
@@ -313,6 +321,8 @@ function mezclarCartas(cartas) {
 
 function iniciarEstadoPartida(nombre, dificultad) {
 
+    cancelarEsperasTablero();
+    document.getElementById('aviso-almacenamiento').textContent = '';
     estadoJuego.dificultad = dificultad;
 
     estadoJuego.nombre = nombre;
@@ -334,6 +344,7 @@ function iniciarEstadoPartida(nombre, dificultad) {
     estadoJuego.partidaIniciada = false;
 
     estadoJuego.partidaFinalizada = false;
+    estadoJuego.resultadoGuardado = false;
 
     estadoJuego.segundos = 0;
 
@@ -355,11 +366,12 @@ function iniciarTemporizador() {
     }
 
     estadoJuego.partidaIniciada = true;
+    estadoJuego.inicioTiempo = Date.now();
 
     estadoJuego.intervaloTiempo =
         setInterval(function () {
 
-            estadoJuego.segundos++;
+            estadoJuego.segundos = Math.floor((Date.now() - estadoJuego.inicioTiempo) / 1000);
 
             actualizarTiempo();
 
@@ -552,22 +564,21 @@ function comprobarVictoria() {
 
 function finalizarPartida() {
 
+    if (estadoJuego.partidaFinalizada) {
+        return;
+    }
     estadoJuego.partidaFinalizada = true;
 
+    /* Calcular la duración final aunque el último callback se haya demorado. */
+    estadoJuego.segundos = Math.floor((Date.now() - estadoJuego.inicioTiempo) / 1000);
+
     detenerTemporizador();
-
-    /*
-     * Bonus por completar la partida.
-     */
-
     sumarPuntos(300);
-
     actualizarEstadisticas();
-
+    guardarResultado();
     mostrarResultadoFinal();
 
 }
-
 /* =========================================
    MOSTRAR RESULTADO FINAL
    ========================================= */
@@ -583,7 +594,7 @@ function mostrarResultadoFinal() {
     document.getElementById(
         'resultado-nivel'
     ).textContent =
-        estadoJuego.dificultad;
+        obtenerNombreNivel(estadoJuego.dificultad);
 
 
     document.getElementById(
@@ -652,4 +663,97 @@ function formatearTiempo(segundos) {
         ':' +
         segundosTexto;
 
+}
+
+/* =========================================
+   NUEVA PARTIDA
+   ========================================= */
+
+function iniciarNuevaPartida() {
+
+    var nombre =
+        estadoJuego.nombre;
+
+    var dificultad =
+        estadoJuego.dificultad;
+
+
+    document.getElementById(
+        'modal-victoria'
+    ).classList.add(
+        'oculto'
+    );
+
+
+    iniciarEstadoPartida(
+        nombre,
+        dificultad
+    );
+
+
+    var discosSeleccionados =
+        obtenerDiscosParaPartida(
+            dificultad
+        );
+
+
+    var pares =
+        crearPares(
+            discosSeleccionados
+        );
+
+
+    var cartas =
+        mezclarCartas(
+            pares
+        );
+
+
+    crearTablero(
+        cartas
+    );
+
+}
+
+
+/* =========================================
+   VOLVER AL INICIO
+   ========================================= */
+
+function volverAlInicio() {
+
+    detenerTemporizador();
+    estadoJuego.tableroBloqueado = true;
+
+    limpiarTablero();
+
+
+    document.getElementById(
+        'modal-victoria'
+    ).classList.add(
+        'oculto'
+    );
+
+
+    document.getElementById(
+        'modal-ranking'
+    ).classList.add(
+        'oculto'
+    );
+
+
+    document.getElementById(
+        'pantalla-juego'
+    ).classList.add(
+        'oculto'
+    );
+
+
+    document.getElementById(
+        'pantalla-inicial'
+    ).classList.remove(
+        'oculto'
+    );
+
+    nombreJugador.focus();
 }
