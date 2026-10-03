@@ -14,7 +14,6 @@
 .informacion-jugador p { overflow-wrap: anywhere; }
 #jugador-actual { display: inline-block; max-width: 14rem; vertical-align: bottom; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .resultado-final span, .informacion-ranking { min-width: 0; overflow-wrap: anywhere; }
-.carta { animation: entrada-carta 0.3s ease both; }
 .contenido-modal { animation: entrada-carta 0.2s ease both; }
 .pantalla-inicial { animation: entrada-carta 0.3s ease both; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outline-offset: 3px; }
@@ -23,8 +22,14 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outlin
     to { opacity: 1; transform: translateY(0); }
 }
 @media (prefers-reduced-motion: reduce) {
-    .carta, .contenido-modal, .pantalla-inicial { animation: none; }
-    .carta-contenido { transition: none; }
+    .contenido-modal,
+    .pantalla-inicial {
+        animation: none;
+    }
+
+    .carta-contenido {
+        transition: none;
+    }
 }
 
 /* =========================================
