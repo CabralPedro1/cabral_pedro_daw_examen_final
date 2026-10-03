@@ -35,49 +35,49 @@ var discos = [
         id: 1,
         nombre: 'Gulp!',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/gulp.jpg'
+        imagen: 'assets/images/portadas/gulp.jpeg'
     },
 
     {
         id: 2,
         nombre: 'Oktubre',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/oktubre.jpg'
+        imagen: 'assets/images/portadas/oktubre.jpeg'
     },
 
     {
         id: 3,
         nombre: 'Un Baión para el Ojo Idiota',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/un-baion.jpg'
+        imagen: 'assets/images/portadas/un-baion.jpeg'
     },
 
     {
         id: 4,
         nombre: '¡Bang! ¡Bang!... Estás Liquidado',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/bang-bang.jpg'
+        imagen: 'assets/images/portadas/bang-bang.jpeg'
     },
 
     {
         id: 5,
         nombre: 'La Mosca y la Sopa',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/la-mosca-y-la-sopa.jpg'
+        imagen: 'assets/images/portadas/la-mosca-y-la-sopa.jpeg'
     },
 
     {
         id: 6,
         nombre: 'Lobo Suelto',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/lobo-suelto.jpg'
+        imagen: 'assets/images/portadas/lobo-suelto.jpeg'
     },
 
     {
         id: 7,
         nombre: 'Cordero Atado',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/cordero-atado.jpg'
+        imagen: 'assets/images/portadas/cordero-atado.jpeg'
     },
 
     {
@@ -98,49 +98,49 @@ var discos = [
         id: 10,
         nombre: 'Momo Sampler',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/momo-sampler.jpg'
+        imagen: 'assets/images/portadas/momo-sampler.jpeg'
     },
 
     {
         id: 11,
         nombre: 'Anti-Identikit',
         artista: 'Los Redondos',
-        imagen: 'assets/images/portadas/anti-identikit.jpg'
+        imagen: 'assets/images/portadas/anti-identikit.jpeg'
     },
 
     {
         id: 12,
         nombre: 'El Tesoro de los Inocentes',
         artista: 'Indio Solari',
-        imagen: 'assets/images/portadas/el-tesoro-de-los-inocentes.jpg'
+        imagen: 'assets/images/portadas/el-tesoro-de-los-inocentes.jpeg'
     },
 
     {
         id: 13,
         nombre: 'Porco Rex',
         artista: 'Indio Solari',
-        imagen: 'assets/images/portadas/porco-rex.jpg'
+        imagen: 'assets/images/portadas/porco-rex.jpeg'
     },
 
     {
         id: 14,
         nombre: 'El Perfume de la Tempestad',
         artista: 'Indio Solari',
-        imagen: 'assets/images/portadas/el-perfume-de-la-tempestad.jpg'
+        imagen: 'assets/images/portadas/el-perfume-de-la-tempestad.jpeg'
     },
 
     {
         id: 15,
         nombre: 'Pajaritos, Bravos Muchachitos',
         artista: 'Indio Solari',
-        imagen: 'assets/images/portadas/pajaritos-bravos-muchachitos.jpg'
+        imagen: 'assets/images/portadas/pajaritos-bravos-muchachitos.jpeg'
     },
 
     {
         id: 16,
         nombre: 'El Ruiseñor, el Amor y la Muerte',
         artista: 'Indio Solari',
-        imagen: 'assets/images/portadas/el-ruisenor.jpg'
+        imagen: 'assets/images/portadas/el-ruisenor.jpeg'
     },
 
     {
@@ -154,7 +154,7 @@ var discos = [
         id: 18,
         nombre: 'Los Marsupiales Extintos',
         artista: 'El Míster',
-        imagen: 'assets/images/portadas/marsupiales-extintos.jpg'
+        imagen: 'assets/images/portadas/marsupiales-extintos.webp'
     }
 
 ];
