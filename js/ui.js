@@ -55,6 +55,8 @@ function seleccionarDificultad(opcion) {
 
 function mostrarPantallaJuego(nombre, dificultad) {
 
+    document.getElementById('contenido-inicial').hidden = true;
+    document.getElementById('contenido-juego').hidden = false;
     pantallaInicial.classList.add('oculto');
 
     pantallaJuego.classList.remove('oculto');
@@ -71,6 +73,9 @@ function mostrarPantallaJuego(nombre, dificultad) {
    ========================================= */
 
 function mostrarPantallaInicial() {
+
+    document.getElementById('contenido-juego').hidden = true;
+    document.getElementById('contenido-inicial').hidden = false;
 
     pantallaJuego.classList.add('oculto');
 

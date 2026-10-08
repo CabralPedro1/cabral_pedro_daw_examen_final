@@ -1,5 +1,65 @@
 'use strict';
 
+var botonNuevaPartida =
+    document.getElementById(
+        'boton-nueva-partida'
+    );
+
+var botonVolverInicio =
+    document.getElementById(
+        'boton-volver-inicio'
+    );
+
+var botonRankingJuego =
+    document.getElementById(
+        'boton-ranking-juego'
+    );
+
+var botonRanking =
+    document.getElementById(
+        'boton-ranking'
+    );
+
+var botonCerrarRanking =
+    document.getElementById(
+        'boton-cerrar-ranking'
+    );
+
+var ordenRanking =
+    document.getElementById(
+        'orden-ranking'
+    );
+
+var botonBorrarRanking =
+    document.getElementById(
+        'boton-borrar-ranking'
+    );
+
+var botonCancelarBorrado =
+    document.getElementById(
+        'boton-cancelar-borrado'
+    );
+
+var botonConfirmarBorrado =
+    document.getElementById(
+        'boton-confirmar-borrado'
+    );
+
+var botonReiniciar =
+    document.getElementById(
+        'boton-reiniciar'
+    );
+
+var botonContinuar =
+    document.getElementById(
+        'boton-continuar'
+    );
+
+var botonAbandonar =
+    document.getElementById(
+        'boton-abandonar'
+    );
+
 document.getElementById('boton-confirmar-reinicio').addEventListener('click', function () {
     document.getElementById('modal-reinicio').classList.add('oculto');
     iniciarNuevaPartida();
@@ -36,14 +96,14 @@ formularioInicio.addEventListener(
     'submit',
     function (evento) {
 
-        evento.preventDefault();
-
 
         var nombre =
             nombreJugador.value.trim();
 
         var formularioValido =
             true;
+
+        evento.preventDefault();
 
 
         /* ---------------------------------
@@ -99,56 +159,16 @@ formularioInicio.addEventListener(
            --------------------------------- */
 
         if (formularioValido) {
-
-            iniciarEstadoPartida(
-                nombre,
-                dificultadSeleccionada
-            );
-
-
-            mostrarPantallaJuego(
-                nombre,
-                dificultadSeleccionada
-            );
-
-
-            var discosSeleccionados =
-                obtenerDiscosParaPartida(
-                    dificultadSeleccionada
-                );
-
-
-            var pares =
-                crearPares(
-                    discosSeleccionados
-                );
-
-
-            var cartas =
-                mezclarCartas(
-                    pares
-                );
-
-
-            crearTablero(
-                cartas
-            );
-
+            prepararPartida(nombre, dificultadSeleccionada);
         }
 
     }
 );
 
 
-
 /* =========================================
    NUEVA PARTIDA
    ========================================= */
-
-var botonNuevaPartida =
-    document.getElementById(
-        'boton-nueva-partida'
-    );
 
 
 if (botonNuevaPartida !== null) {
@@ -165,15 +185,9 @@ if (botonNuevaPartida !== null) {
 }
 
 
-
 /* =========================================
    VOLVER AL INICIO
    ========================================= */
-
-var botonVolverInicio =
-    document.getElementById(
-        'boton-volver-inicio'
-    );
 
 
 if (botonVolverInicio !== null) {
@@ -190,15 +204,9 @@ if (botonVolverInicio !== null) {
 }
 
 
-
 /* =========================================
    RANKING DESDE EL JUEGO
    ========================================= */
-
-var botonRankingJuego =
-    document.getElementById(
-        'boton-ranking-juego'
-    );
 
 
 if (botonRankingJuego !== null) {
@@ -223,15 +231,9 @@ if (botonRankingJuego !== null) {
 }
 
 
-
 /* =========================================
    RANKING DESDE EL RESULTADO FINAL
    ========================================= */
-
-var botonRanking =
-    document.getElementById(
-        'boton-ranking'
-    );
 
 
 if (botonRanking !== null) {
@@ -263,15 +265,9 @@ if (botonRanking !== null) {
 }
 
 
-
 /* =========================================
    CERRAR RANKING
    ========================================= */
-
-var botonCerrarRanking =
-    document.getElementById(
-        'boton-cerrar-ranking'
-    );
 
 
 if (botonCerrarRanking !== null) {
@@ -310,15 +306,9 @@ if (botonCerrarRanking !== null) {
 }
 
 
-
 /* =========================================
    CAMBIAR ORDEN DEL RANKING
    ========================================= */
-
-var ordenRanking =
-    document.getElementById(
-        'orden-ranking'
-    );
 
 
 if (ordenRanking !== null) {
@@ -337,15 +327,9 @@ if (ordenRanking !== null) {
 }
 
 
-
 /* =========================================
    ABRIR CONFIRMACIÓN DE BORRADO
    ========================================= */
-
-var botonBorrarRanking =
-    document.getElementById(
-        'boton-borrar-ranking'
-    );
 
 
 if (botonBorrarRanking !== null) {
@@ -366,15 +350,9 @@ if (botonBorrarRanking !== null) {
 }
 
 
-
 /* =========================================
    CANCELAR BORRADO
    ========================================= */
-
-var botonCancelarBorrado =
-    document.getElementById(
-        'boton-cancelar-borrado'
-    );
 
 
 if (botonCancelarBorrado !== null) {
@@ -395,15 +373,9 @@ if (botonCancelarBorrado !== null) {
 }
 
 
-
 /* =========================================
    CONFIRMAR BORRADO
    ========================================= */
-
-var botonConfirmarBorrado =
-    document.getElementById(
-        'boton-confirmar-borrado'
-    );
 
 
 if (botonConfirmarBorrado !== null) {
@@ -427,15 +399,9 @@ if (botonConfirmarBorrado !== null) {
 }
 
 
-
 /* =========================================
    BOTÓN REINICIAR
    ========================================= */
-
-var botonReiniciar =
-    document.getElementById(
-        'boton-reiniciar'
-    );
 
 
 if (botonReiniciar !== null) {
@@ -456,15 +422,9 @@ if (botonReiniciar !== null) {
 }
 
 
-
 /* =========================================
    CONTINUAR JUGANDO
    ========================================= */
-
-var botonContinuar =
-    document.getElementById(
-        'boton-continuar'
-    );
 
 
 if (botonContinuar !== null) {
@@ -485,15 +445,9 @@ if (botonContinuar !== null) {
 }
 
 
-
 /* =========================================
    ABANDONAR Y COMENZAR NUEVA
    ========================================= */
-
-var botonAbandonar =
-    document.getElementById(
-        'boton-abandonar'
-    );
 
 
 if (botonAbandonar !== null) {

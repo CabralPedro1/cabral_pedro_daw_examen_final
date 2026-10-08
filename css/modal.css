@@ -170,22 +170,6 @@
     gap: 0.5rem;
 }
 
-.item-ranking {
-    display: flex;
-
-    justify-content: space-between;
-
-    gap: 1rem;
-
-    padding: 0.8rem;
-
-    border-bottom: 1px solid var(--gris-borde);
-}
-
-.item-ranking span {
-    color: var(--gris-texto);
-}
-
 .item-ranking strong {
     color: var(--blanco);
 
@@ -206,6 +190,7 @@
    ========================================= */
 
 .item-ranking {
+    justify-content: space-between;
     display: flex;
 
     align-items: flex-start;

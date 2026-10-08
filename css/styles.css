@@ -484,10 +484,6 @@ p {
     color: var(--rojo-intenso);
 }
 
-.separador-footer {
-    color: var(--rojo);
-}
-
 .pie-pagina p {
     color: var(--gris-suave);
 
@@ -517,20 +513,6 @@ p {
             transparent 25%
         ),
         var(--negro);
-}
-
-.contacto-encabezado {
-    min-height: 190px;
-
-    padding: 2rem 4rem;
-}
-
-.contacto-encabezado .titulo-principal h1 {
-    font-size: 4rem;
-}
-
-.contacto-encabezado .titulo-principal p {
-    font-size: 1.4rem;
 }
 
 .contenido-contacto {
@@ -564,14 +546,6 @@ p {
     text-transform: uppercase;
 
     letter-spacing: 0.06rem;
-}
-
-.texto-contacto {
-    margin-bottom: 2.5rem;
-
-    color: var(--gris-texto);
-
-    line-height: 1.6;
 }
 
 #formulario-contacto {
@@ -649,16 +623,6 @@ p {
 
     box-shadow:
         0 0 8px rgba(180, 0, 0, 0.2);
-}
-
-.boton-contacto {
-    min-width: 235px;
-
-    min-height: 55px;
-
-    margin-top: 0.5rem;
-
-    font-size: 1.1rem;
 }
 
 .pagina-contacto .pie-pagina {

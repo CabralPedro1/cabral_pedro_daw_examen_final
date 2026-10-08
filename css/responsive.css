@@ -1,3 +1,14 @@
+.informacion-jugador { min-width: 0; }
+.informacion-jugador p { overflow-wrap: anywhere; }
+#jugador-actual { display: inline-block; max-width: 14rem; vertical-align: bottom; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.resultado-final span, .informacion-ranking { min-width: 0; overflow-wrap: anywhere; }
+.contenido-modal { animation: entrada-carta 0.2s ease both; }
+.pantalla-inicial { animation: entrada-carta 0.3s ease both; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outline-offset: 3px; }
+@keyframes entrada-carta {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 /* Ajustes del alto disponible en desktop. */
 @media (min-width: 769px) {
     .pantalla-juego { min-height: 0; flex: 1; }
@@ -10,17 +21,7 @@
     body > .pie-pagina { padding: 0.65rem 2rem; }
 }
 
-.informacion-jugador { min-width: 0; }
-.informacion-jugador p { overflow-wrap: anywhere; }
-#jugador-actual { display: inline-block; max-width: 14rem; vertical-align: bottom; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.resultado-final span, .informacion-ranking { min-width: 0; overflow-wrap: anywhere; }
-.contenido-modal { animation: entrada-carta 0.2s ease both; }
-.pantalla-inicial { animation: entrada-carta 0.3s ease both; }
-button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outline-offset: 3px; }
-@keyframes entrada-carta {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+
 @media (prefers-reduced-motion: reduce) {
     .contenido-modal,
     .pantalla-inicial {
@@ -139,16 +140,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outlin
     /* -------------------------------------
        CONTACTO
        ------------------------------------- */
-
-    .contacto-encabezado {
-        min-height: auto;
-
-        padding: 2rem 1.5rem;
-    }
-
-    .contacto-encabezado .titulo-principal h1 {
-        font-size: 3rem;
-    }
 
     .contenido-contacto {
         padding: 2.5rem 1.5rem 3rem;
@@ -319,19 +310,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outlin
        CONTACTO
        ------------------------------------- */
 
-    .contacto-encabezado .logo img {
-        width: 75px;
-        height: 75px;
-    }
-
-    .contacto-encabezado .titulo-principal h1 {
-        font-size: 2.5rem;
-    }
-
-    .contacto-encabezado .titulo-principal p {
-        font-size: 0.95rem;
-    }
-
     .seccion-contacto h2 {
         font-size: 1.9rem;
     }
@@ -342,10 +320,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--blanco); outlin
 
     .campo-contacto textarea {
         min-height: 120px;
-    }
-
-    .boton-contacto {
-        width: 100%;
     }
 
     .pagina-contacto .navegacion-pie {

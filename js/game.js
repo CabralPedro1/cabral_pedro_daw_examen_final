@@ -218,18 +218,44 @@ function obtenerConfiguracion(dificultad) {
    OBTENER DISCOS PARA LA PARTIDA
    ========================================= */
 
+function validarCatalogo(dificultad) {
+    var configuracion = obtenerConfiguracion(dificultad);
+    var ids = [];
+    var imagenes = [];
+    var disco;
+    var id;
+    var i;
+
+    if (!configuracion || discos.length < configuracion.pares) {
+        return false;
+    }
+    for (i = 0; i < discos.length; i++) {
+        disco = discos[i];
+        if (!disco || disco.id === null || typeof disco.id === 'undefined' ||
+                typeof disco.imagen !== 'string' || !disco.imagen.trim()) {
+            return false;
+        }
+        id = String(disco.id);
+        if (!id || ids.indexOf(id) !== -1 || imagenes.indexOf(disco.imagen) !== -1) {
+            return false;
+        }
+        ids.push(id);
+        imagenes.push(disco.imagen);
+    }
+    return true;
+}
+
 function obtenerDiscosParaPartida(dificultad) {
+    var cantidadPares;
+    var discosMezclados;
 
-    var cantidadPares =
-        obtenerConfiguracion(dificultad).pares;
-
-    var discosMezclados =
-        discos.slice();
-
+    if (!validarCatalogo(dificultad)) {
+        return null;
+    }
+    cantidadPares = obtenerConfiguracion(dificultad).pares;
+    discosMezclados = discos.slice();
     mezclarArray(discosMezclados);
-
     return discosMezclados.slice(0, cantidadPares);
-
 }
 
 
@@ -404,29 +430,7 @@ function detenerTemporizador() {
    ========================================= */
 
 function actualizarTiempo() {
-
-    var minutos =
-        Math.floor(
-            estadoJuego.segundos / 60
-        );
-
-    var segundos =
-        estadoJuego.segundos % 60;
-
-    var minutosTexto =
-        minutos < 10
-            ? '0' + minutos
-            : minutos;
-
-    var segundosTexto =
-        segundos < 10
-            ? '0' + segundos
-            : segundos;
-
-    document.getElementById('tiempo')
-        .textContent =
-        minutosTexto + ':' + segundosTexto;
-
+    document.getElementById('tiempo').textContent = formatearTiempo(estadoJuego.segundos);
 }
 
 
@@ -669,50 +673,26 @@ function formatearTiempo(segundos) {
    NUEVA PARTIDA
    ========================================= */
 
+function prepararPartida(nombre, dificultad) {
+    var discosSeleccionados = obtenerDiscosParaPartida(dificultad);
+    var cartas;
+
+    if (discosSeleccionados === null) {
+        volverAlInicio();
+        mostrarError(errorDificultad, 'No se puede iniciar este nivel: el catálogo debe tener suficientes discos con identificadores e imágenes únicos. Elegí otro nivel o revisá los recursos.');
+        return false;
+    }
+    cartas = mezclarCartas(crearPares(discosSeleccionados));
+    document.getElementById('modal-victoria').classList.add('oculto');
+    limpiarError(errorDificultad);
+    iniciarEstadoPartida(nombre, dificultad);
+    mostrarPantallaJuego(nombre, dificultad);
+    crearTablero(cartas);
+    return true;
+}
+
 function iniciarNuevaPartida() {
-
-    var nombre =
-        estadoJuego.nombre;
-
-    var dificultad =
-        estadoJuego.dificultad;
-
-
-    document.getElementById(
-        'modal-victoria'
-    ).classList.add(
-        'oculto'
-    );
-
-
-    iniciarEstadoPartida(
-        nombre,
-        dificultad
-    );
-
-
-    var discosSeleccionados =
-        obtenerDiscosParaPartida(
-            dificultad
-        );
-
-
-    var pares =
-        crearPares(
-            discosSeleccionados
-        );
-
-
-    var cartas =
-        mezclarCartas(
-            pares
-        );
-
-
-    crearTablero(
-        cartas
-    );
-
+    prepararPartida(estadoJuego.nombre, estadoJuego.dificultad);
 }
 
 
@@ -742,18 +722,7 @@ function volverAlInicio() {
     );
 
 
-    document.getElementById(
-        'pantalla-juego'
-    ).classList.add(
-        'oculto'
-    );
-
-
-    document.getElementById(
-        'pantalla-inicial'
-    ).classList.remove(
-        'oculto'
-    );
+    mostrarPantallaInicial();
 
     nombreJugador.focus();
 }

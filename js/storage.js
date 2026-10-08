@@ -4,9 +4,11 @@
 var errorAlmacenamiento = '';
 
 function leerHistorial(clave) {
+    var datos;
+
     errorAlmacenamiento = '';
     try {
-        var datos = JSON.parse(localStorage.getItem(clave) || '[]');
+        datos = JSON.parse(localStorage.getItem(clave) || '[]');
         if (!Array.isArray(datos)) {
             throw new Error('Formato de historial inválido');
         }

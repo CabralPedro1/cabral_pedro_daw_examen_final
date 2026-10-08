@@ -61,6 +61,7 @@ function entorno(archivo) {
             comprobar(!elementos[id[1]], 'ID único: ' + id[1]);
             elementos[id[1]] = el;
             el.id = id[1];
+            el.hidden = /\shidden(?:\s|>)/.test(tag);
         }
         var clase = /class="([^"]+)"/.exec(tag);
         if (clase) { clase[1].split(' ').forEach(function (c) { el.classList.add(c); }); }
@@ -70,9 +71,10 @@ function entorno(archivo) {
     var doc = {
         getElementById: function (id) { assert.ok(elementos[id], 'Referencia existente: ' + id); return elementos[id]; },
         createElement: elemento,
-        querySelectorAll: function () { return dificultades; },
+        querySelectorAll: function (selector) { assert.equal(selector, '.opcion-dificultad'); return dificultades; },
         querySelector: function (selector) {
             if (selector === 'body > .pie-pagina') { return {offsetHeight: 44}; }
+            assert.equal(selector, '.modal:not(.oculto)');
             return modales.filter(function (m) { return !m.classList.contains('oculto'); })[0] || null;
         }
     };
@@ -80,7 +82,7 @@ function entorno(archivo) {
     function programar(fn, ms, repetir) { siguiente++; tareas[siguiente] = {fn: fn, ms: ms, vence: ahora + ms, repetir: repetir}; return siguiente; }
     var contexto = {
         document: doc,
-        window: {innerWidth: 1366, innerHeight: 768, addEventListener: function () {}, getComputedStyle: function () { return {gap: '10', paddingLeft: '12'}; }},
+        window: {location: {href: ''}, innerWidth: 1366, innerHeight: 768, addEventListener: function () {}, getComputedStyle: function () { return {gap: '10', paddingLeft: '12'}; }},
         localStorage: {
             getItem: function (k) { return datos[k] || null; },
             setItem: function (k, v) { datos[k] = v; },
@@ -117,6 +119,7 @@ function entorno(archivo) {
     contexto.avanzarSinCallbacks = function (ms) {
         ahora += ms;
     };
+    contexto.tareasPendientes = function () { return Object.keys(tareas).length; };
     contexto.el = elementos;
     contexto.dificultadesPrueba = dificultades;
     contexto.click = function (id) { elementos[id].emitir('click'); };
@@ -136,6 +139,10 @@ function entorno(archivo) {
     var cartas = c.el.tablero.children;
     var total = [16, 20, 36][indice];
     comprobar(cartas.length === total, 'Cantidad ' + nivel);
+    var cantidades = {};
+    cartas.forEach(function (carta) { cantidades[carta.dataset.id] = (cantidades[carta.dataset.id] || 0) + 1; });
+    comprobar(Object.keys(cantidades).length === total / 2 && Object.keys(cantidades).every(function (id) { return cantidades[id] === 2; }), 'Exactamente dos cartas por pareja ' + nivel);
+    comprobar(c.el['contenido-inicial'].hidden && !c.el['contenido-juego'].hidden, 'Un main activo durante el juego');
     comprobar(Number(c.el.tablero.getAttribute('data-columnas')) === [4, 5, 6][indice], 'Columnas ' + nivel);
     comprobar(cartas.every(function (e) { return e.classList.contains('girada'); }), 'Vista inicial');
     cartas[0].emitir('click');
@@ -163,6 +170,7 @@ function entorno(archivo) {
     c.click('boton-reiniciar'); c.click('boton-confirmar-reinicio');
     c.avanzar(1000);
     comprobar(c.estadoJuego.tableroBloqueado && c.estadoJuego.intentos === 0 && c.estadoJuego.segundos === 0, 'Reinicio cancela callbacks antiguos');
+    comprobar(c.tareasPendientes() === 1 && c.estadoJuego.intervaloTiempo === null && c.estadoJuego.esperaPareja === null, 'Reinicio conserva solamente la nueva vista previa');
     comprobar(c.obtenerRanking().length === 0, 'Reinicio incompleto no se guarda');
     c.avanzar(1500);
     c.estadoJuego.puntaje = 100;
@@ -175,6 +183,10 @@ function entorno(archivo) {
         grupos[id][0].emitir('click'); grupos[id][1].emitir('click');
     });
     comprobar(c.estadoJuego.partidaFinalizada && c.estadoJuego.puntaje === total / 2 * 100 + 300, 'Victoria y bonus ' + nivel);
+    comprobar(Number(c.el.puntaje.textContent) === c.estadoJuego.puntaje && Number(c.el.intentos.textContent) === total / 2 && Number(c.el.errores.textContent) === 0 && c.el['pares-encontrados'].textContent === total / 2 + ' / ' + total / 2, 'Estadísticas visibles de victoria ' + nivel);
+    var guardado = c.obtenerRanking()[0];
+    comprobar(guardado.nombre === 'Pedro' && guardado.nivel === nivel && guardado.puntaje === c.estadoJuego.puntaje && guardado.intentos === total / 2 && guardado.errores === 0 && guardado.duracion === c.estadoJuego.segundos, 'Guardar estadísticas completas ' + nivel);
+    comprobar(c.tareasPendientes() === 0, 'Victoria sin callbacks pendientes');
     comprobar(c.obtenerRanking().length === 1 && c.estadoJuego.intervaloTiempo === null, 'Guardar una partida y detener reloj');
     c.finalizarPartida(); c.guardarResultado();
     comprobar(c.obtenerRanking().length === 1, 'Sin resultados ni bonus duplicados');
@@ -185,6 +197,7 @@ function entorno(archivo) {
     c.click('boton-reiniciar'); c.click('boton-abandonar'); c.avanzar(4000);
     comprobar(!c.el['pantalla-inicial'].classList.contains('oculto') && c.el.tablero.children.length === 0, 'Abandonar vuelve al inicio');
     comprobar(c.obtenerRanking().length === 1, 'Abandono no guardado');
+    comprobar(c.tareasPendientes() === 0 && !c.el['contenido-inicial'].hidden && c.el['contenido-juego'].hidden, 'Abandono limpia callbacks y restaura main inicial');
     c.iniciar(nivel); c.avanzar(2500);
     c.click('boton-ranking-juego');
     c.click('boton-borrar-ranking'); c.click('boton-cancelar-borrado');
@@ -272,4 +285,81 @@ comprobar(contacto.el['error-email-contacto'].textContent, 'Email inválido');
 contacto.el['email-contacto'].value = 'pedro@example.com';
 contacto.el['formulario-contacto'].emitir('submit');
 comprobar(contacto.el['resultado-contacto'].textContent && !contacto.el['error-email-contacto'].textContent, 'Contacto válido');
+
+/* Validar el comportamiento del formulario y la codificación del correo. */
+['', '   ', '!!!', 'Ana@', 'Ana María', 'Ana_2'].forEach(function (nombre) {
+    contacto.window.location.href = '';
+    contacto.el['nombre-contacto'].value = nombre;
+    contacto.el['formulario-contacto'].emitir('submit');
+    comprobar(!!contacto.el['error-nombre-contacto'].textContent && contacto.window.location.href === '', 'Rechazar nombre: ' + nombre);
+});
+contacto.el['nombre-contacto'].value = 'Ñandú2';
+['', 'a', 'a@@b.com', 'a b@c.com', 'a..b@c.com', 'a@-b.com', 'a@b..com'].forEach(function (email) {
+    contacto.window.location.href = '';
+    contacto.el['email-contacto'].value = email;
+    contacto.el['formulario-contacto'].emitir('submit');
+    comprobar(!!contacto.el['error-email-contacto'].textContent && contacto.window.location.href === '', 'Rechazar email: ' + email);
+});
+contacto.el['email-contacto'].value = 'ana+prueba@example.com';
+['', ' ', 'a', 'ab', 'abc', 'abcd', 'abcde', '  abcde  '].forEach(function (mensaje) {
+    contacto.window.location.href = '';
+    contacto.el['mensaje-contacto'].value = mensaje;
+    contacto.el['formulario-contacto'].emitir('submit');
+    comprobar(!!contacto.el['error-mensaje-contacto'].textContent && contacto.window.location.href === '', 'Rechazar mensaje corto');
+});
+contacto.el['mensaje-contacto'].value = 'abcdef';
+contacto.el['formulario-contacto'].emitir('submit');
+comprobar(contacto.window.location.href.indexOf('mailto:') === 0, 'Seis caracteres permiten abrir correo');
+contacto.el['mensaje-contacto'].value = '  Consulta & ? # % + ñ\nSegunda línea  ';
+contacto.el['formulario-contacto'].emitir('submit');
+var correo = contacto.window.location.href;
+var camposCorreo = correo.substring(correo.indexOf('?') + 1).split('&');
+comprobar(camposCorreo.length === 2, 'Caracteres especiales no inyectan parámetros en mailto');
+comprobar(decodeURIComponent(camposCorreo[0]) === 'subject=Consulta sobre Memotest - Ñandú2', 'Asunto codificado completo');
+comprobar(decodeURIComponent(camposCorreo[1]) === 'body=Nombre: Ñandú2\r\nEmail de contacto: ana+prueba@example.com\r\n\r\nConsulta & ? # % + ñ\nSegunda línea', 'Cuerpo codificado completo');
+comprobar(contacto.validarNombreContacto('A') && contacto.validarNombreContacto(' Á2 ') && !contacto.validarNombre('A'), 'Validaciones de contacto y jugador independientes');
+
+/* El catálogo incompleto o repetido debe fallar antes de crear un tablero. */
+var catalogo = entorno('index.html');
+catalogo.discos.pop();
+catalogo.iniciar('dificil');
+comprobar(catalogo.el.tablero.children.length === 0 && !catalogo.estadoJuego.partidaIniciada, 'No iniciar tablero incompleto');
+comprobar(!catalogo.el['pantalla-inicial'].classList.contains('oculto') && !!catalogo.el['error-dificultad'].textContent, 'Error de catálogo visible y recuperable');
+comprobar(catalogo.tareasPendientes() === 0 && catalogo.obtenerRanking().length === 0, 'Catálogo inválido no crea timers ni resultados');
+catalogo.iniciar('facil');
+comprobar(catalogo.el.tablero.children.length === 16 && !catalogo.el['error-dificultad'].textContent, 'Recuperar el juego eligiendo nivel válido');
+catalogo.avanzar(2500);
+catalogo.el.tablero.children[0].emitir('click');
+catalogo.discos.length = 7;
+catalogo.click('boton-reiniciar'); catalogo.click('boton-confirmar-reinicio');
+comprobar(catalogo.el.tablero.children.length === 0 && catalogo.tareasPendientes() === 0 && catalogo.obtenerRanking().length === 0, 'Reinicio con catálogo inválido cancela callbacks y no guarda');
+['id', 'imagen'].forEach(function (campo) {
+    var repetido = entorno('index.html');
+    repetido.discos[1][campo] = repetido.discos[0][campo];
+    repetido.iniciar('dificil');
+    comprobar(repetido.el.tablero.children.length === 0 && !!repetido.el['error-dificultad'].textContent, 'Rechazar duplicado de ' + campo);
+});
+
+/* Mezcla con azar controlado: cambiar orden sin perder ni agregar cartas. */
+var mezcla = entorno('index.html');
+vm.runInContext('Math.random = function () { return 0; };', mezcla);
+var entradaMezcla = [1, 2, 3, 4];
+var salidaMezcla = mezcla.mezclarCartas(entradaMezcla);
+comprobar(salidaMezcla.join(',') === '2,3,4,1', 'Mezcla ejecuta intercambios con azar controlado');
+comprobar(entradaMezcla.join(',') === '1,2,3,4', 'Mezcla conserva el arreglo original');
+
+/* Verificar el orden completo que ve el usuario y su persistencia. */
+var listaReal = entorno('index.html');
+listaReal.guardarRanking(resultados);
+['puntaje', 'fecha', 'duracion', 'nivel'].forEach(function (criterio, indice) {
+    listaReal.el['orden-ranking'].value = criterio;
+    listaReal.el['orden-ranking'].emitir('change');
+    var nombres = listaReal.el['lista-ranking'].children.map(function (fila) { return fila.children[1].children[0].textContent; });
+    comprobar(nombres.join(',') === ['Caro,Ana,Beto', 'Beto,Ana,Caro', 'Beto,Ana,Caro', 'Beto,Caro,Ana'][indice], 'Ranking visible por ' + criterio);
+    comprobar(listaReal.el['lista-ranking'].children[0].children[1].children[2].textContent.indexOf('Intentos:') === 0, 'Ranking muestra estadísticas');
+});
+var otraSesion = entorno('index.html');
+otraSesion.localStorage.setItem(otraSesion.CLAVE_RANKING, listaReal.localStorage.getItem(listaReal.CLAVE_RANKING));
+comprobar(JSON.stringify(otraSesion.obtenerRanking()) === JSON.stringify(resultados), 'Recuperar todas las estadísticas persistidas');
+
 console.log('OK: ' + verificaciones + ' verificaciones. DOM y reloj simulados; no reemplaza la revisión visual en navegador.');

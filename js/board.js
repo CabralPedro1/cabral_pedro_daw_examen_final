@@ -26,9 +26,15 @@ function limpiarTablero() {
    ========================================= */
 
 function crearCarta(carta) {
+    var elementoCarta;
+    var contenido;
+    var dorso;
+    var imagenDorso;
+    var frente;
+    var imagenFrente;
 
-    var elementoCarta =
-        document.createElement('button');
+
+    elementoCarta = document.createElement('button');
 
     elementoCarta.type = 'button';
     elementoCarta.setAttribute('aria-label', 'Carta boca abajo');
@@ -44,8 +50,7 @@ function crearCarta(carta) {
        CONTENIDO
        ===================================== */
 
-    var contenido =
-        document.createElement('span');
+    contenido = document.createElement('span');
 
     contenido.classList.add(
         'carta-contenido'
@@ -56,16 +61,14 @@ function crearCarta(carta) {
        DORSO
        ===================================== */
 
-    var dorso =
-        document.createElement('span');
+    dorso = document.createElement('span');
 
     dorso.classList.add(
         'carta-dorso'
     );
 
 
-    var imagenDorso =
-        document.createElement('img');
+    imagenDorso = document.createElement('img');
 
     imagenDorso.src =
         'assets/images/logo/logo-redondos.png';
@@ -78,16 +81,14 @@ function crearCarta(carta) {
        FRENTE
        ===================================== */
 
-    var frente =
-        document.createElement('span');
+    frente = document.createElement('span');
 
     frente.classList.add(
         'carta-frente'
     );
 
 
-    var imagenFrente =
-        document.createElement('img');
+    imagenFrente = document.createElement('img');
 
     imagenFrente.src =
         carta.imagen;
@@ -147,14 +148,17 @@ function crearCarta(carta) {
    ========================================= */
 
 function crearTablero(cartas) {
+    var cantidadCartas;
+    var columnas;
+
 
     limpiarTablero();
 
     tablero.classList.remove('bloqueado');
 
-    var cantidadCartas = cartas.length;
+    cantidadCartas = cartas.length;
 
-    var columnas = 4;
+    columnas = 4;
 
     if (cantidadCartas === 20) {
         columnas = 5;
@@ -418,19 +422,29 @@ function cancelarEsperasTablero() {
 
 /* Ajustar ambos ejes: el ancho por sí solo no garantiza que entren las filas. */
 function ajustarTablero() {
+    var columnas;
+    var filas;
+    var estilo;
+    var espacio;
+    var borde;
+    var anchoDisponible;
+    var lado;
+    var footer;
+    var altoDisponible;
+
     if (!tablero.children.length || pantallaJuego.classList.contains('oculto')) {
         return;
     }
-    var columnas = Number(tablero.getAttribute('data-columnas'));
-    var filas = tablero.children.length / columnas;
-    var estilo = window.getComputedStyle(tablero);
-    var espacio = parseFloat(estilo.gap) || 0;
-    var borde = parseFloat(estilo.paddingLeft) * 2 + 2;
-    var anchoDisponible = tablero.parentNode.clientWidth;
-    var lado = (Math.min(anchoDisponible, 820) - borde - espacio * (columnas - 1)) / columnas;
+    columnas = Number(tablero.getAttribute('data-columnas'));
+    filas = tablero.children.length / columnas;
+    estilo = window.getComputedStyle(tablero);
+    espacio = parseFloat(estilo.gap) || 0;
+    borde = parseFloat(estilo.paddingLeft) * 2 + 2;
+    anchoDisponible = tablero.parentNode.clientWidth;
+    lado = (Math.min(anchoDisponible, 820) - borde - espacio * (columnas - 1)) / columnas;
     if (window.innerWidth > 768) {
-        var footer = document.querySelector('body > .pie-pagina');
-        var altoDisponible = window.innerHeight - tablero.getBoundingClientRect().top - footer.offsetHeight - 24;
+        footer = document.querySelector('body > .pie-pagina');
+        altoDisponible = window.innerHeight - tablero.getBoundingClientRect().top - footer.offsetHeight - 24;
         lado = Math.min(lado, (altoDisponible - borde - espacio * (filas - 1)) / filas);
     }
     lado = Math.max(32, Math.floor(lado));

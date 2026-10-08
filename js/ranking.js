@@ -40,11 +40,14 @@ function guardarRanking(ranking) {
    ========================================= */
 
 function guardarResultado() {
+    var resultado;
+    var ranking;
+
     if (!estadoJuego.partidaFinalizada || estadoJuego.resultadoGuardado) {
         return;
     }
 
-    var resultado = {
+    resultado = {
 
         nombre:
             estadoJuego.nombre,
@@ -70,8 +73,7 @@ function guardarResultado() {
     };
 
 
-    var ranking =
-        obtenerRanking();
+    ranking = obtenerRanking();
 
 
     ranking.push(resultado);
@@ -193,32 +195,7 @@ function ordenarRanking(ranking, criterio) {
    ========================================= */
 
 function formatearDuracion(segundos) {
-
-    var minutos =
-        Math.floor(
-            segundos / 60
-        );
-
-    var segundosRestantes =
-        segundos % 60;
-
-
-    var minutosTexto =
-        minutos < 10
-            ? '0' + minutos
-            : minutos;
-
-
-    var segundosTexto =
-        segundosRestantes < 10
-            ? '0' + segundosRestantes
-            : segundosRestantes;
-
-
-    return minutosTexto +
-        ':' +
-        segundosTexto;
-
+    return formatearTiempo(segundos);
 }
 
 
@@ -308,9 +285,12 @@ function formatearFecha(fecha) {
    ========================================= */
 
 function mostrarRanking(criterio) {
+    var lista;
+    var ranking;
+    var mensaje;
 
-    var lista =
-        document.getElementById(
+
+    lista = document.getElementById(
             'lista-ranking'
         );
 
@@ -318,8 +298,7 @@ function mostrarRanking(criterio) {
     lista.innerHTML = '';
 
 
-    var ranking =
-        obtenerRanking();
+    ranking = obtenerRanking();
 
 
     document.getElementById('aviso-ranking').textContent = errorAlmacenamiento;
@@ -332,8 +311,7 @@ function mostrarRanking(criterio) {
 
     if (ranking.length === 0) {
 
-        var mensaje =
-            document.createElement('p');
+        mensaje = document.createElement('p');
 
         mensaje.textContent =
             'Todavía no hay partidas registradas.';
@@ -349,39 +327,41 @@ function mostrarRanking(criterio) {
 
     ranking.forEach(
         function (resultado, indice) {
+            var elemento;
+            var posicion;
+            var informacion;
+            var nombre;
+            var datos;
+            var detalle;
 
-            var elemento =
-                document.createElement('div');
+
+            elemento = document.createElement('div');
 
             elemento.classList.add(
                 'item-ranking'
             );
 
 
-            var posicion =
-                document.createElement('strong');
+            posicion = document.createElement('strong');
 
             posicion.textContent =
                 '#' + (indice + 1);
 
 
-            var informacion =
-                document.createElement('div');
+            informacion = document.createElement('div');
 
             informacion.classList.add(
                 'informacion-ranking'
             );
 
 
-            var nombre =
-                document.createElement('p');
+            nombre = document.createElement('p');
 
             nombre.textContent =
                 resultado.nombre;
 
 
-            var datos =
-                document.createElement('p');
+            datos = document.createElement('p');
 
             datos.textContent =
                 obtenerNombreNivel(
@@ -392,8 +372,7 @@ function mostrarRanking(criterio) {
                 ' puntos';
 
 
-            var detalle =
-                document.createElement('small');
+            detalle = document.createElement('small');
 
             detalle.textContent =
                 'Intentos: ' +
